@@ -3,6 +3,7 @@ using neMicroOndas;
 using peMicroOndas.TO;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -17,6 +18,8 @@ namespace ProjetoMicroOndas
         public string nTempo = "";
         public string nPotencia = "";
         public string nInstrucoesUso = "";
+        public string ehArquivoTxt = "";
+        public string stringDoArquivo = "";
 
         ConsultaPrograma consultaPrograma = new ConsultaPrograma();
         public List<TOProgramas> listaDosProgramas = new List<TOProgramas>();
@@ -146,25 +149,59 @@ namespace ProjetoMicroOndas
             txtTempo.Text = "";
             txtPotencia.Text = "";
 
-            var retorno = listaDosProgramas.Where(x => x.Programa.ToUpper() == txtStringDeEntrada.Text.ToUpper()).FirstOrDefault();
 
-            if (retorno == null)
+            var filePath = txtStringDeEntrada.Text;
+
+            //Verificar se a string informada corresponde à um diretório válido
+            if (File.Exists(filePath))
             {
-                args.textoEntrada = "Alimento incompatível com o programa!";
-                VerificaEvento(args);
-            }
-            else
-            {
+                ehArquivoTxt = "sim";
+                var fileContent = string.Empty;
+
+
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    fileContent = reader.ReadToEnd();
+                    stringDoArquivo = fileContent;
+                    reader.Close();
+                }
+
+                var retorno = listaDosProgramas.Where(x => x.Programa.ToUpper() == stringDoArquivo.ToUpper()).FirstOrDefault();
+
                 txtTempo.Text = retorno.Tempo;
                 txtPotencia.Text = retorno.Potencia;
 
                 cont = int.Parse(txtTempo.Text);
-                stringIncremental = txtStringDeEntrada.Text.Substring(0, 1);
+                stringIncremental = stringDoArquivo.Substring(0, 1);
 
                 //Inicia o timer de atualização dos valores
                 Timer timer = new Timer();
                 timer1.Interval = int.Parse(txtTempo.Text);
                 timer1.Start();
+            }
+            else
+            {
+                var retorno = listaDosProgramas.Where(x => x.Programa.ToUpper() == txtStringDeEntrada.Text.ToUpper()).FirstOrDefault();
+
+                if (retorno == null)
+                {
+                    args.textoEntrada = "Alimento incompatível com o programa!";
+                    VerificaEvento(args);
+                }
+                else
+                {
+
+                    txtTempo.Text = retorno.Tempo;
+                    txtPotencia.Text = retorno.Potencia;
+
+                    cont = int.Parse(txtTempo.Text);
+                    stringIncremental = txtStringDeEntrada.Text.Substring(0, 1);
+
+                    //Inicia o timer de atualização dos valores
+                    Timer timer = new Timer();
+                    timer1.Interval = int.Parse(txtTempo.Text);
+                    timer1.Start();
+                }
             }
         }
 
@@ -448,7 +485,22 @@ namespace ProjetoMicroOndas
             }
 
             //Incrementando valores à string de entrada
-            foreach (var item in pontoFinal)
+            if (ehArquivoTxt == "sim")
+            {
+                var filePath = txtStringDeEntrada.Text;
+
+                using (StreamWriter sw = new StreamWriter(filePath))
+                {
+                    foreach (var item in pontoFinal)
+                    {
+                        txtStringDeEntrada.Text += stringIncremental;
+
+                        foreach (string line in pontoFinal)
+                            sw.WriteLine(line);
+                    }
+                }
+            }
+            else
             {
                 txtStringDeEntrada.Text += stringIncremental;
             }
@@ -468,12 +520,12 @@ namespace ProjetoMicroOndas
                 VerificaEvento(args);
             }
         }
-    }
 
 
-    public class StringEntradaEventArgs : EventArgs
-    {
-        public string textoEntrada { get; set; }
+        public class StringEntradaEventArgs : EventArgs
+        {
+            public string textoEntrada { get; set; }
+        }
     }
 }
 

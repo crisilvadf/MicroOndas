@@ -35,12 +35,12 @@
             this.lblNomeDoPrograma = new System.Windows.Forms.Label();
             this.txtStringDeEntrada = new System.Windows.Forms.TextBox();
             this.brnInicioRapido = new System.Windows.Forms.Button();
-            this.btnFechar = new System.Windows.Forms.Button();
             this.btnConsultarPrograma = new System.Windows.Forms.Button();
             this.btnPrograma = new System.Windows.Forms.Button();
             this.lblPotencia = new System.Windows.Forms.Label();
             this.txtPotencia = new System.Windows.Forms.TextBox();
             this.lblTempo = new System.Windows.Forms.Label();
+            this.btnFechar = new System.Windows.Forms.Button();
             this.lblAquecida = new System.Windows.Forms.Label();
             this.lblTextoStringFinal1 = new System.Windows.Forms.Label();
             this.lblTextoStringFinal2 = new System.Windows.Forms.Label();
@@ -62,6 +62,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtNomeDoPrograma = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             this.gbConsultaProgramas.SuspendLayout();
             this.gbResultadoPesquisaPrograma.SuspendLayout();
@@ -70,16 +71,16 @@
             // txtTempo
             // 
             this.txtTempo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTempo.Location = new System.Drawing.Point(22, 79);
+            this.txtTempo.Location = new System.Drawing.Point(10, 79);
             this.txtTempo.Multiline = true;
             this.txtTempo.Name = "txtTempo";
-            this.txtTempo.Size = new System.Drawing.Size(156, 32);
+            this.txtTempo.Size = new System.Drawing.Size(156, 22);
             this.txtTempo.TabIndex = 0;
             this.txtTempo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnInicio
             // 
-            this.btnInicio.Location = new System.Drawing.Point(23, 260);
+            this.btnInicio.Location = new System.Drawing.Point(11, 260);
             this.btnInicio.Name = "btnInicio";
             this.btnInicio.Size = new System.Drawing.Size(156, 23);
             this.btnInicio.TabIndex = 3;
@@ -108,7 +109,7 @@
             // lblNomeDoPrograma
             // 
             this.lblNomeDoPrograma.AutoSize = true;
-            this.lblNomeDoPrograma.Location = new System.Drawing.Point(19, 15);
+            this.lblNomeDoPrograma.Location = new System.Drawing.Point(7, 15);
             this.lblNomeDoPrograma.Name = "lblNomeDoPrograma";
             this.lblNomeDoPrograma.Size = new System.Drawing.Size(98, 13);
             this.lblNomeDoPrograma.TabIndex = 17;
@@ -117,16 +118,16 @@
             // txtStringDeEntrada
             // 
             this.txtStringDeEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStringDeEntrada.Location = new System.Drawing.Point(21, 28);
+            this.txtStringDeEntrada.Location = new System.Drawing.Point(9, 28);
             this.txtStringDeEntrada.Multiline = true;
             this.txtStringDeEntrada.Name = "txtStringDeEntrada";
-            this.txtStringDeEntrada.Size = new System.Drawing.Size(156, 32);
+            this.txtStringDeEntrada.Size = new System.Drawing.Size(156, 25);
             this.txtStringDeEntrada.TabIndex = 16;
             this.txtStringDeEntrada.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // brnInicioRapido
             // 
-            this.brnInicioRapido.Location = new System.Drawing.Point(23, 231);
+            this.brnInicioRapido.Location = new System.Drawing.Point(11, 231);
             this.brnInicioRapido.Name = "brnInicioRapido";
             this.brnInicioRapido.Size = new System.Drawing.Size(155, 23);
             this.brnInicioRapido.TabIndex = 15;
@@ -134,19 +135,9 @@
             this.brnInicioRapido.UseVisualStyleBackColor = true;
             this.brnInicioRapido.Click += new System.EventHandler(this.brnInicioRapido_Click);
             // 
-            // btnFechar
-            // 
-            this.btnFechar.Location = new System.Drawing.Point(11, 368);
-            this.btnFechar.Name = "btnFechar";
-            this.btnFechar.Size = new System.Drawing.Size(199, 23);
-            this.btnFechar.TabIndex = 6;
-            this.btnFechar.Text = "Fechar";
-            this.btnFechar.UseVisualStyleBackColor = true;
-            this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
-            // 
             // btnConsultarPrograma
             // 
-            this.btnConsultarPrograma.Location = new System.Drawing.Point(23, 202);
+            this.btnConsultarPrograma.Location = new System.Drawing.Point(11, 202);
             this.btnConsultarPrograma.Name = "btnConsultarPrograma";
             this.btnConsultarPrograma.Size = new System.Drawing.Size(154, 23);
             this.btnConsultarPrograma.TabIndex = 5;
@@ -156,7 +147,7 @@
             // 
             // btnPrograma
             // 
-            this.btnPrograma.Location = new System.Drawing.Point(23, 173);
+            this.btnPrograma.Location = new System.Drawing.Point(11, 173);
             this.btnPrograma.Name = "btnPrograma";
             this.btnPrograma.Size = new System.Drawing.Size(154, 23);
             this.btnPrograma.TabIndex = 4;
@@ -167,7 +158,7 @@
             // lblPotencia
             // 
             this.lblPotencia.AutoSize = true;
-            this.lblPotencia.Location = new System.Drawing.Point(20, 116);
+            this.lblPotencia.Location = new System.Drawing.Point(8, 116);
             this.lblPotencia.Name = "lblPotencia";
             this.lblPotencia.Size = new System.Drawing.Size(129, 13);
             this.lblPotencia.TabIndex = 3;
@@ -176,7 +167,7 @@
             // txtPotencia
             // 
             this.txtPotencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPotencia.Location = new System.Drawing.Point(22, 129);
+            this.txtPotencia.Location = new System.Drawing.Point(10, 129);
             this.txtPotencia.Multiline = true;
             this.txtPotencia.Name = "txtPotencia";
             this.txtPotencia.Size = new System.Drawing.Size(156, 32);
@@ -186,11 +177,21 @@
             // lblTempo
             // 
             this.lblTempo.AutoSize = true;
-            this.lblTempo.Location = new System.Drawing.Point(20, 66);
+            this.lblTempo.Location = new System.Drawing.Point(8, 66);
             this.lblTempo.Name = "lblTempo";
             this.lblTempo.Size = new System.Drawing.Size(120, 13);
             this.lblTempo.TabIndex = 1;
             this.lblTempo.Text = "Tempo de Aquecimento";
+            // 
+            // btnFechar
+            // 
+            this.btnFechar.Location = new System.Drawing.Point(11, 368);
+            this.btnFechar.Name = "btnFechar";
+            this.btnFechar.Size = new System.Drawing.Size(199, 23);
+            this.btnFechar.TabIndex = 6;
+            this.btnFechar.Text = "Fechar";
+            this.btnFechar.UseVisualStyleBackColor = true;
+            this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
             // 
             // lblAquecida
             // 
@@ -399,6 +400,10 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nome do Programa:";
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // MicroOndas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -458,6 +463,7 @@
         private System.Windows.Forms.Button btnIniciarAquecimento;
         private System.Windows.Forms.Button btnAdicionarPrograma;
         private System.Windows.Forms.Button btnSalvar;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
