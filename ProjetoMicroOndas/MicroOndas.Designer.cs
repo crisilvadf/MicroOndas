@@ -32,6 +32,8 @@
             this.txtTempo = new System.Windows.Forms.TextBox();
             this.btnInicio = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnPausar = new System.Windows.Forms.Button();
             this.lblNomeDoPrograma = new System.Windows.Forms.Label();
             this.txtStringDeEntrada = new System.Windows.Forms.TextBox();
             this.brnInicioRapido = new System.Windows.Forms.Button();
@@ -63,6 +65,7 @@
             this.txtNomeDoPrograma = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.timerPausaAquecimento = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.gbConsultaProgramas.SuspendLayout();
             this.gbResultadoPesquisaPrograma.SuspendLayout();
@@ -90,6 +93,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnCancelar);
+            this.groupBox1.Controls.Add(this.btnPausar);
             this.groupBox1.Controls.Add(this.lblNomeDoPrograma);
             this.groupBox1.Controls.Add(this.txtStringDeEntrada);
             this.groupBox1.Controls.Add(this.brnInicioRapido);
@@ -105,6 +110,28 @@
             this.groupBox1.Size = new System.Drawing.Size(200, 401);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.ForeColor = System.Drawing.Color.Red;
+            this.btnCancelar.Location = new System.Drawing.Point(10, 341);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(157, 23);
+            this.btnCancelar.TabIndex = 19;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnPausar
+            // 
+            this.btnPausar.ForeColor = System.Drawing.Color.Blue;
+            this.btnPausar.Location = new System.Drawing.Point(11, 312);
+            this.btnPausar.Name = "btnPausar";
+            this.btnPausar.Size = new System.Drawing.Size(155, 23);
+            this.btnPausar.TabIndex = 18;
+            this.btnPausar.Text = "Pausar";
+            this.btnPausar.UseVisualStyleBackColor = true;
+            this.btnPausar.Click += new System.EventHandler(this.btnPausar_Click);
             // 
             // lblNomeDoPrograma
             // 
@@ -464,6 +491,9 @@
         private System.Windows.Forms.Button btnAdicionarPrograma;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnPausar;
+        private System.Windows.Forms.Timer timerPausaAquecimento;
     }
 }
 

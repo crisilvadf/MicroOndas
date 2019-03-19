@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProjetoMicroOndas
@@ -49,9 +50,6 @@ namespace ProjetoMicroOndas
         private void brnInicioRapido_Click(object sender, EventArgs e)
         {
             lblAquecida.Visible = false;
-            txtStringDeEntrada.Text = "";
-            txtTempo.Text = "";
-            txtPotencia.Text = "";
 
             gbConsultaProgramas.Visible = false;
 
@@ -61,10 +59,8 @@ namespace ProjetoMicroOndas
             cont = int.Parse(txtTempo.Text);
             stringIncremental = ".";
 
-            Timer timer = new Timer();
             timer1.Interval = int.Parse(txtTempo.Text);
             timer1.Start();
-
         }
 
 
@@ -130,7 +126,6 @@ namespace ProjetoMicroOndas
             //Chama o timer para atualizar o campo de entrada (string)
             if (txtTempo.Text != "")
             {
-                Timer timer = new Timer();
                 timer1.Interval = int.Parse(txtTempo.Text);
                 timer1.Start();
                 timer1.Start();
@@ -175,7 +170,6 @@ namespace ProjetoMicroOndas
                 stringIncremental = stringDoArquivo.Substring(0, 1);
 
                 //Inicia o timer de atualização dos valores
-                Timer timer = new Timer();
                 timer1.Interval = int.Parse(txtTempo.Text);
                 timer1.Start();
             }
@@ -284,7 +278,6 @@ namespace ProjetoMicroOndas
             stringIncremental = txtStringDeEntrada.Text.Substring(0, 1);
 
             //Inicia o timer de atualização dos valores
-            Timer timer = new Timer();
             timer1.Interval = int.Parse(txtTempo.Text);
             timer1.Start();
         }
@@ -484,20 +477,27 @@ namespace ProjetoMicroOndas
                 pontoFinal[i] += ".";
             }
 
-            //Incrementando valores à string de entrada
+            //Validando a entrada para utilizar o streamwriter para gravar as informações no arquivo
             if (ehArquivoTxt == "sim")
             {
                 var filePath = txtStringDeEntrada.Text;
 
-                using (StreamWriter sw = new StreamWriter(filePath))
+                using (StreamWriter sw = new StreamWriter(filePath, true))
                 {
-                    foreach (var item in pontoFinal)
+                    //Incrementando valores à string de entrada
+                    foreach (string line in pontoFinal)
                     {
                         txtStringDeEntrada.Text += stringIncremental;
-
-                        foreach (string line in pontoFinal)
-                            sw.WriteLine(line);
+                        sw.WriteLine(line);
                     }
+
+                    string aquecida = "aquecida";
+
+                    timer1.Stop();
+                    lblAquecida.Text = aquecida;
+                    lblAquecida.Visible = true;
+
+                    cont = 0;
                 }
             }
             else
@@ -516,6 +516,9 @@ namespace ProjetoMicroOndas
 
                 cont = 0;
 
+                txtTempo.Text = "";
+                txtPotencia.Text = "";
+
                 args.textoEntrada = txtStringDeEntrada.Text;
                 VerificaEvento(args);
             }
@@ -525,6 +528,62 @@ namespace ProjetoMicroOndas
         public class StringEntradaEventArgs : EventArgs
         {
             public string textoEntrada { get; set; }
+        }
+
+        /// <summary>
+        /// Action de pausa do aquecimento
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void btnPausar_Click(object sender, EventArgs e)
+        {
+            if (btnPausar.Text == "Pausar")
+            {
+                PausaAquecimento();
+            }
+            else
+            {
+                ReiniciarAquecimento();
+            }
+        }
+
+
+        /// <summary>
+        /// Action que para o aquecimento
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            CancelarAquecimento();
+        }
+
+        /// <summary>
+        /// Task que dá um pause na aplicação
+        /// </summary>
+        /// <returns></returns>
+        async Task PausaAquecimento()
+        {
+            btnPausar.Text = "Reiniciar";
+            timer1.Stop();
+            await Task.Delay(-1);
+        }
+
+        async Task ReiniciarAquecimento()
+        {
+            btnPausar.Text = "Pausar";
+            timer1.Start();
+        }
+
+        async Task CancelarAquecimento()
+        {
+            timer1.Stop();
+            args.textoEntrada = "Aquecimento Cancelado!";
+            VerificaEvento(args);
+
+            txtStringDeEntrada.Text = "";
+            txtTempo.Text = "";
+            txtPotencia.Text = "";
         }
     }
 }
