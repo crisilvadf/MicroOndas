@@ -455,6 +455,78 @@ namespace ProjetoMicroOndas
 
 
         /// <summary>
+        /// Action de pausa do aquecimento
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void btnPausar_Click(object sender, EventArgs e)
+        {
+            if (timer1.Enabled)
+            {
+                if (btnPausar.Text == "Pausar")
+                {
+                    PausaAquecimento();
+                }
+            }
+            else
+            {
+                ReiniciarAquecimento();
+            }
+        }
+
+
+        /// <summary>
+        /// Action que para o aquecimento
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+                CancelarAquecimento();
+                btnPausar.Text = "Pausar";
+        }
+
+
+        /// <summary>
+        /// Task que dá um pause na aplicação
+        /// </summary>
+        /// <returns></returns>
+        async Task PausaAquecimento()
+        {
+            btnPausar.Text = "Reiniciar";
+            timer1.Stop();
+            await Task.Delay(-1);
+        }
+
+
+        /// <summary>
+        /// Task que reinicia o aquecimento
+        /// </summary>
+        /// <returns></returns>
+        async Task ReiniciarAquecimento()
+        {
+            btnPausar.Text = "Pausar";
+            timer1.Start();
+        }
+
+
+        /// <summary>
+        /// Task que cancela o aquecimento
+        /// </summary>
+        /// <returns></returns>
+        async Task CancelarAquecimento()
+        {
+            timer1.Stop();
+            args.textoEntrada = "Aquecimento Cancelado!";
+            VerificaEvento(args);
+
+            txtStringDeEntrada.Text = "";
+            txtTempo.Text = "";
+            txtPotencia.Text = "";
+        }
+
+
+        /// <summary>
         /// Timer de execução do aquecimento
         /// </summary>
         /// <param name="sender"></param>
@@ -526,80 +598,6 @@ namespace ProjetoMicroOndas
         public class StringEntradaEventArgs : EventArgs
         {
             public string textoEntrada { get; set; }
-        }
-
-        /// <summary>
-        /// Action de pausa do aquecimento
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private async void btnPausar_Click(object sender, EventArgs e)
-        {
-            if (timer1.Enabled)
-            {
-                if (btnPausar.Text == "Pausar")
-                {
-                    PausaAquecimento();
-                }
-                else
-                {
-                    ReiniciarAquecimento();
-                }
-            }
-        }
-
-
-        /// <summary>
-        /// Action que para o aquecimento
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            if (timer1.Enabled)
-            {
-                CancelarAquecimento();
-                btnPausar.Text = "Pausar";
-            }
-        }
-
-
-        /// <summary>
-        /// Task que dá um pause na aplicação
-        /// </summary>
-        /// <returns></returns>
-        async Task PausaAquecimento()
-        {
-            btnPausar.Text = "Reiniciar";
-            timer1.Stop();
-            await Task.Delay(-1);
-        }
-
-
-        /// <summary>
-        /// Task que reinicia o aquecimento
-        /// </summary>
-        /// <returns></returns>
-        async Task ReiniciarAquecimento()
-        {
-            btnPausar.Text = "Pausar";
-            timer1.Start();
-        }
-
-
-        /// <summary>
-        /// Task que cancela o aquecimento
-        /// </summary>
-        /// <returns></returns>
-        async Task CancelarAquecimento()
-        {
-            timer1.Stop();
-            args.textoEntrada = "Aquecimento Cancelado!";
-            VerificaEvento(args);
-
-            txtStringDeEntrada.Text = "";
-            txtTempo.Text = "";
-            txtPotencia.Text = "";
         }
     }
 }
