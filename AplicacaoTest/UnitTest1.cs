@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProjetoMicroOndas;
+using neMicroOndas;
 
 namespace AplicacaoTest
 {
@@ -11,8 +11,10 @@ namespace AplicacaoTest
         /// Primeiro método a ser executado
         /// </summary>
         [TestInitialize]
-        public void IniciarTestes() {
-            
+        public void ValidaTempoTeste()
+        {
+            ValidaTempo validaTempo = new ValidaTempo();
+            validaTempo.tempoCozimento("5");
         }
 
         [TestMethod]

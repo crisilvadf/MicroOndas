@@ -77,13 +77,13 @@
             this.txtTempo.Location = new System.Drawing.Point(10, 79);
             this.txtTempo.Multiline = true;
             this.txtTempo.Name = "txtTempo";
-            this.txtTempo.Size = new System.Drawing.Size(156, 22);
+            this.txtTempo.Size = new System.Drawing.Size(215, 22);
             this.txtTempo.TabIndex = 0;
             this.txtTempo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnInicio
             // 
-            this.btnInicio.Location = new System.Drawing.Point(11, 260);
+            this.btnInicio.Location = new System.Drawing.Point(39, 259);
             this.btnInicio.Name = "btnInicio";
             this.btnInicio.Size = new System.Drawing.Size(156, 23);
             this.btnInicio.TabIndex = 3;
@@ -107,14 +107,14 @@
             this.groupBox1.Controls.Add(this.txtTempo);
             this.groupBox1.Location = new System.Drawing.Point(12, 32);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 401);
+            this.groupBox1.Size = new System.Drawing.Size(242, 401);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
             // btnCancelar
             // 
             this.btnCancelar.ForeColor = System.Drawing.Color.Red;
-            this.btnCancelar.Location = new System.Drawing.Point(10, 341);
+            this.btnCancelar.Location = new System.Drawing.Point(38, 340);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(157, 23);
             this.btnCancelar.TabIndex = 19;
@@ -125,7 +125,7 @@
             // btnPausar
             // 
             this.btnPausar.ForeColor = System.Drawing.Color.Blue;
-            this.btnPausar.Location = new System.Drawing.Point(11, 312);
+            this.btnPausar.Location = new System.Drawing.Point(39, 311);
             this.btnPausar.Name = "btnPausar";
             this.btnPausar.Size = new System.Drawing.Size(155, 23);
             this.btnPausar.TabIndex = 18;
@@ -144,17 +144,17 @@
             // 
             // txtStringDeEntrada
             // 
-            this.txtStringDeEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStringDeEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStringDeEntrada.Location = new System.Drawing.Point(9, 28);
             this.txtStringDeEntrada.Multiline = true;
             this.txtStringDeEntrada.Name = "txtStringDeEntrada";
-            this.txtStringDeEntrada.Size = new System.Drawing.Size(156, 25);
+            this.txtStringDeEntrada.Size = new System.Drawing.Size(215, 25);
             this.txtStringDeEntrada.TabIndex = 16;
             this.txtStringDeEntrada.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // brnInicioRapido
             // 
-            this.brnInicioRapido.Location = new System.Drawing.Point(11, 231);
+            this.brnInicioRapido.Location = new System.Drawing.Point(39, 230);
             this.brnInicioRapido.Name = "brnInicioRapido";
             this.brnInicioRapido.Size = new System.Drawing.Size(155, 23);
             this.brnInicioRapido.TabIndex = 15;
@@ -164,7 +164,7 @@
             // 
             // btnConsultarPrograma
             // 
-            this.btnConsultarPrograma.Location = new System.Drawing.Point(11, 202);
+            this.btnConsultarPrograma.Location = new System.Drawing.Point(39, 201);
             this.btnConsultarPrograma.Name = "btnConsultarPrograma";
             this.btnConsultarPrograma.Size = new System.Drawing.Size(154, 23);
             this.btnConsultarPrograma.TabIndex = 5;
@@ -174,7 +174,7 @@
             // 
             // btnPrograma
             // 
-            this.btnPrograma.Location = new System.Drawing.Point(11, 173);
+            this.btnPrograma.Location = new System.Drawing.Point(39, 172);
             this.btnPrograma.Name = "btnPrograma";
             this.btnPrograma.Size = new System.Drawing.Size(154, 23);
             this.btnPrograma.TabIndex = 4;
@@ -197,7 +197,7 @@
             this.txtPotencia.Location = new System.Drawing.Point(10, 129);
             this.txtPotencia.Multiline = true;
             this.txtPotencia.Name = "txtPotencia";
-            this.txtPotencia.Size = new System.Drawing.Size(156, 32);
+            this.txtPotencia.Size = new System.Drawing.Size(215, 22);
             this.txtPotencia.TabIndex = 1;
             this.txtPotencia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -284,7 +284,7 @@
             this.gbConsultaProgramas.Controls.Add(this.lblListaDeProgramas);
             this.gbConsultaProgramas.Controls.Add(this.btnFechar);
             this.gbConsultaProgramas.Controls.Add(this.cmbListaDeProgramas);
-            this.gbConsultaProgramas.Location = new System.Drawing.Point(218, 32);
+            this.gbConsultaProgramas.Location = new System.Drawing.Point(314, 32);
             this.gbConsultaProgramas.Name = "gbConsultaProgramas";
             this.gbConsultaProgramas.Size = new System.Drawing.Size(220, 401);
             this.gbConsultaProgramas.TabIndex = 23;
@@ -435,7 +435,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(450, 492);
+            this.ClientSize = new System.Drawing.Size(584, 492);
             this.Controls.Add(this.gbConsultaProgramas);
             this.Controls.Add(this.lblTextoStringFinal2);
             this.Controls.Add(this.lblTextoStringFinal1);

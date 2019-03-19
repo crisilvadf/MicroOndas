@@ -148,7 +148,6 @@ namespace ProjetoMicroOndas
             //Verificar se a string informada corresponde à um diretório válido
             if (File.Exists(filePath))
             {
-                ehArquivoTxt = "sim";
                 var fileContent = string.Empty;
 
 
@@ -161,15 +160,26 @@ namespace ProjetoMicroOndas
 
                 var retorno = listaDosProgramas.Where(x => x.Programa.ToUpper() == stringDoArquivo.ToUpper()).FirstOrDefault();
 
-                txtTempo.Text = retorno.Tempo;
-                txtPotencia.Text = retorno.Potencia;
+                if (retorno != null)
+                {
+                    ehArquivoTxt = "sim";
 
-                cont = int.Parse(txtTempo.Text);
-                stringIncremental = stringDoArquivo.Substring(0, 1);
+                    txtTempo.Text = retorno.Tempo;
+                    txtPotencia.Text = retorno.Potencia;
 
-                //Inicia o timer de atualização dos valores
-                timer1.Interval = int.Parse(txtTempo.Text);
-                timer1.Start();
+                    cont = int.Parse(txtTempo.Text);
+                    stringIncremental = stringDoArquivo.Substring(0, 1);
+
+                    //Inicia o timer de atualização dos valores
+                    timer1.Interval = int.Parse(txtTempo.Text);
+                    timer1.Start();
+                }
+                else
+                {
+                    args.textoEntrada = "Alimento incompatível com o programa!";
+                    VerificaEvento(args);
+                }
+                
             }
             else
             {
@@ -536,7 +546,6 @@ namespace ProjetoMicroOndas
             cont--;
 
             //Recebe os valores das variáveis para determinar a finalização do timer
-            var tamanhoString = txtStringDeEntrada.TextLength;
             var totalTempo = int.Parse(txtTempo.Text);
             var totalPotencia = int.Parse(txtPotencia.Text);
             string[] pontoFinal = new string[totalPotencia];
@@ -557,7 +566,6 @@ namespace ProjetoMicroOndas
                     //Incrementando valores à string de entrada
                     foreach (string line in pontoFinal)
                     {
-                        txtStringDeEntrada.Text += stringIncremental;
                         sw.WriteLine(line);
                     }
 
