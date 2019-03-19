@@ -1,5 +1,4 @@
-﻿using Negocio;
-using neMicroOndas;
+﻿using neMicroOndas;
 using peMicroOndas.TO;
 using System;
 using System.Collections.Generic;
@@ -22,7 +21,6 @@ namespace ProjetoMicroOndas
         public string ehArquivoTxt = "";
         public string stringDoArquivo = "";
 
-        ConsultaPrograma consultaPrograma = new ConsultaPrograma();
         public List<TOProgramas> listaDosProgramas = new List<TOProgramas>();
         StringEntradaEventArgs args = new StringEntradaEventArgs();
 
@@ -315,7 +313,7 @@ namespace ProjetoMicroOndas
 
 
         /// <summary>
-        /// Action do botão 'Salvar'
+        /// Action do botão 'Salvar' que realiza a inclusão do novo programa do micro-ondas
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -537,13 +535,16 @@ namespace ProjetoMicroOndas
         /// <param name="e"></param>
         private async void btnPausar_Click(object sender, EventArgs e)
         {
-            if (btnPausar.Text == "Pausar")
+            if (timer1.Enabled)
             {
-                PausaAquecimento();
-            }
-            else
-            {
-                ReiniciarAquecimento();
+                if (btnPausar.Text == "Pausar")
+                {
+                    PausaAquecimento();
+                }
+                else
+                {
+                    ReiniciarAquecimento();
+                }
             }
         }
 
@@ -555,8 +556,13 @@ namespace ProjetoMicroOndas
         /// <param name="e"></param>
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            CancelarAquecimento();
+            if (timer1.Enabled)
+            {
+                CancelarAquecimento();
+                btnPausar.Text = "Pausar";
+            }
         }
+
 
         /// <summary>
         /// Task que dá um pause na aplicação
@@ -569,12 +575,22 @@ namespace ProjetoMicroOndas
             await Task.Delay(-1);
         }
 
+
+        /// <summary>
+        /// Task que reinicia o aquecimento
+        /// </summary>
+        /// <returns></returns>
         async Task ReiniciarAquecimento()
         {
             btnPausar.Text = "Pausar";
             timer1.Start();
         }
 
+
+        /// <summary>
+        /// Task que cancela o aquecimento
+        /// </summary>
+        /// <returns></returns>
         async Task CancelarAquecimento()
         {
             timer1.Stop();
